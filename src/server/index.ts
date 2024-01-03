@@ -2,6 +2,9 @@
 
 import Fastify from "fastify";
 
+import { initialize } from "../database/seed.js";
+import { isProduction } from "../env/node-env.js";
+
 const fastify = Fastify({
   logger: true
 });
@@ -11,6 +14,9 @@ fastify.get("/", async () => {
 
 const start = async () => {
   try {
+    if (!isProduction) {
+      await initialize();
+    }
     await fastify.listen({ port: 3000 });
     
   } catch (err) {
@@ -19,3 +25,4 @@ const start = async () => {
   }
 };
 start();
+
