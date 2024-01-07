@@ -7,6 +7,7 @@
   "type": "module",
   "scripts": {
     "start": "node --loader ts-node/esm ./src/server/index.ts | pino-pretty",
+    "postinstall": "prisma generate",
     "lint": "eslint . --ext .ts"
   },
   "keywords": [],
