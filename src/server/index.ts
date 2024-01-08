@@ -1,3 +1,4 @@
+#!/usr/bin/env ts-node
 "use strict";
 
 import Fastify from "fastify";
@@ -5,7 +6,7 @@ import Fastify from "fastify";
 import { initialize } from "../database/seed.js";
 import { isProduction } from "../env/node-env.js";
 
-const port = Number(process.env.PORT ?? 4000);
+const port = Number(process.env.PORT ?? 3000);
 
 const fastify = Fastify({
   logger: true
@@ -31,5 +32,5 @@ const start = async () => {
     process.exit(1);
   }
 };
-start();
 
+start();
