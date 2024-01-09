@@ -1,6 +1,3 @@
-#!/usr/bin/env ts-node
-"use strict";
-
 import Fastify from "fastify";
 
 import { initialize } from "../database/seed.js";
@@ -17,7 +14,8 @@ fastify.get("/", async () => {
 });
 
 fastify.get("/health", async (_, reply) => {
-  return reply.statusCode = 200;
+  reply.statusCode = 200;
+  return;
 });
 
 const start = async () => {
@@ -25,7 +23,7 @@ const start = async () => {
     if (!isProduction) {
       await initialize();
     }
-    await fastify.listen({ port });
+    await fastify.listen({ port, host: '0.0.0.0' });
     
   } catch (err) {
     fastify.log.error(err);
